@@ -3,6 +3,8 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { getSettings } from "./client/settings";
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +36,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} antialiased`}>
         <Header />
         {children}
+        <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
   );
