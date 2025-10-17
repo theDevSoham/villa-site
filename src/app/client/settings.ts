@@ -1,7 +1,6 @@
 import { createClient } from "@/prismicio";
-import { AllDocumentTypes } from "../../../prismicio-types";
 
-const getSettings = async (): Promise<AllDocumentTypes> => {
+const getSettings = async () => {
   const client = createClient();
   return await client.getSingle("settings");
 };
