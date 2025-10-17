@@ -478,6 +478,41 @@ export interface SettingsDocumentDataNavLinksItem {
 }
 
 /**
+ * Item in *Settings → Footer Content*
+ */
+export interface SettingsDocumentDataFooterContentItem {
+  /**
+   * Branding field in *Settings → Footer Content*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_content[].branding
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  branding: prismic.KeyTextField;
+
+  /**
+   * Declaration field in *Settings → Footer Content*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_content[].declaration
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  declaration: prismic.KeyTextField;
+
+  /**
+   * Copyright field in *Settings → Footer Content*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_content[].copyright
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  copyright: prismic.KeyTextField;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -546,6 +581,19 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   og_image: prismic.ImageField<never>;
+
+  /**
+   * Footer Content field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.footer_content[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  footer_content: prismic.GroupField<
+    Simplify<SettingsDocumentDataFooterContentItem>
+  >;
 }
 
 /**
@@ -1098,6 +1146,7 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavLinksItem,
+      SettingsDocumentDataFooterContentItem,
       AllDocumentTypes,
       BrandingSlice,
       BrandingSliceDefaultPrimary,

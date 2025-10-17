@@ -42,7 +42,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           }}
         />
       </div>
-      <div className="absolute inset-0 z-20 flex justify-center items-center px-4">
+      <div className="absolute inset-0 top-30 z-20 flex justify-center items-center px-4">
         <div className={`${container} w-full`}>
           <VillaSearchForm />
         </div>

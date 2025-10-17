@@ -70,6 +70,36 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "footer_content": {
+        "type": "Group",
+        "config": {
+          "label": "Footer Content",
+          "repeat": false,
+          "fields": {
+            "branding": {
+              "type": "Text",
+              "config": {
+                "label": "Branding",
+                "placeholder": ""
+              }
+            },
+            "declaration": {
+              "type": "Text",
+              "config": {
+                "label": "Declaration",
+                "placeholder": ""
+              }
+            },
+            "copyright": {
+              "type": "Text",
+              "config": {
+                "label": "Copyright",
+                "placeholder": ""
+              }
+            }
+          }
+        }
       }
     }
   }

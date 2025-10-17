@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { getSettings } from "./client/settings";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} antialiased`}>
         <Header />
         {children}
+        <Footer />
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
