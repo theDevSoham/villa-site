@@ -223,6 +223,7 @@ export type EventPropertyPageDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | BrandingSlice
   | EventPropertyListingsSlice
   | PropertyListingsSlice
   | TestimonialsSlice
@@ -570,6 +571,51 @@ export type AllDocumentTypes =
   | RentalDocument
   | RentalPropertiesDocument
   | SettingsDocument;
+
+/**
+ * Primary content in *Branding → Default → Primary*
+ */
+export interface BrandingSliceDefaultPrimary {
+  /**
+   * Brand Image field in *Branding → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: branding.default.primary.brand_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  brand_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Branding Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BrandingSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BrandingSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Branding*
+ */
+type BrandingSliceVariation = BrandingSliceDefault;
+
+/**
+ * Branding Shared Slice
+ *
+ * - **API ID**: `branding`
+ * - **Description**: Branding
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BrandingSlice = prismic.SharedSlice<
+  "branding",
+  BrandingSliceVariation
+>;
 
 /**
  * Primary content in *EventPropertyDetails → Default → Primary*
@@ -1053,6 +1099,10 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavLinksItem,
       AllDocumentTypes,
+      BrandingSlice,
+      BrandingSliceDefaultPrimary,
+      BrandingSliceVariation,
+      BrandingSliceDefault,
       EventPropertyDetailsSlice,
       EventPropertyDetailsSliceDefaultPrimary,
       EventPropertyDetailsSliceVariation,

@@ -1,0 +1,27 @@
+{
+  "id": "branding",
+  "type": "SharedSlice",
+  "name": "Branding",
+  "description": "Branding",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "brand_image": {
+          "type": "Image",
+          "config": {
+            "label": "Brand Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

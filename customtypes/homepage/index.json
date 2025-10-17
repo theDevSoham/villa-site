@@ -18,6 +18,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "branding": {
+              "type": "SharedSlice"
+            },
             "event_property_listings": {
               "type": "SharedSlice"
             },
