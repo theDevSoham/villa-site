@@ -11,9 +11,10 @@ type Params = { uid: string };
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { uid } = await params;
   const client = createClient();
-  const page = await client
-    .getByUID("villa_details", uid)
-    .catch(() => notFound());
+  const page = await client.getByUID("rental", uid).catch((e) => {
+    console.log(e);
+    notFound();
+  });
 
   return <SliceZone slices={page.data.slices} components={components} />;
 }
@@ -25,9 +26,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { uid } = await params;
   const client = createClient();
-  const page = await client
-    .getByUID("villa_details", uid)
-    .catch(() => notFound());
+  const page = await client.getByUID("rental", uid).catch(() => notFound());
 
   return {
     title: page.data.meta_title,
@@ -40,7 +39,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const client = createClient();
-  const pages = await client.getAllByType("villa_details");
+  const pages = await client.getAllByType("rental");
 
   return pages.map((page) => ({ uid: page.uid }));
 }

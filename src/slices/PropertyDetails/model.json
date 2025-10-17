@@ -1,0 +1,40 @@
+{
+  "id": "property_details",
+  "type": "SharedSlice",
+  "name": "PropertyDetails",
+  "description": "PropertyDetails",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "property_details": {
+          "type": "Link",
+          "config": {
+            "label": "Property Details",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "rental_properties",
+                "fields": [
+                  "property_image",
+                  "title",
+                  "description",
+                  "lowest_price",
+                  "highest_price",
+                  "is_enabled"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

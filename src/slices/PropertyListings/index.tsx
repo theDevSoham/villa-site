@@ -4,8 +4,8 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { andika, bubblerOne, koho } from "@/assets/font/font";
 import { container } from "@/constants/tailwind-constants";
-import { createClient } from "@/prismicio";
 import Link from "next/link";
+import { getRentalProperties } from "@/app/client/rental_properties";
 
 /**
  * Props for `PropertyListings`.
@@ -17,15 +17,13 @@ export type PropertyListingsProps =
  * Component for "PropertyListings" Slices.
  */
 const PropertyListings: FC<PropertyListingsProps> = async ({ slice }) => {
-  const client = createClient();
-
   const rentalPropertyListings = await Promise.all(
     slice.primary.rental_property_listings.map((item) => {
       if (
         isFilled.contentRelationship(item.rental_property) &&
         item.rental_property.uid
       ) {
-        return client.getByUID("rental_properties", item.rental_property.uid);
+        return getRentalProperties(item.rental_property.uid);
       }
     })
   );
@@ -119,7 +117,7 @@ const PropertyListings: FC<PropertyListingsProps> = async ({ slice }) => {
                   {isFilled.keyText(item.uid) && (
                     <div className="mt-auto pt-4">
                       <Link
-                        href={`/rental-properties/${item.uid}`}
+                        href={`/property/rental/${item.uid}-page`}
                         className="inline-block text-center w-full bg-[#3C6125] text-white font-semibold py-3 rounded-xl transition-all duration-300 hover:bg-[#2A481A] focus:ring-2 focus:ring-offset-2 focus:ring-[#3C6125]"
                       >
                         View Details

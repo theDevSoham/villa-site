@@ -148,6 +148,67 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type RentalDocumentDataSlicesSlice = PropertyDetailsSlice;
+
+/**
+ * Content for Rental Property Page documents
+ */
+interface RentalDocumentData {
+  /**
+   * Slice Zone field in *Rental Property Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rental.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<RentalDocumentDataSlicesSlice> /**
+   * Meta Title field in *Rental Property Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: rental.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Rental Property Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: rental.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Rental Property Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rental.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Rental Property Page document from Prismic
+ *
+ * - **API ID**: `rental`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type RentalDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<RentalDocumentData>, "rental", Lang>;
+
 /**
  * Content for Rental Properties documents
  */
@@ -350,6 +411,7 @@ export type SettingsDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | HomepageDocument
+  | RentalDocument
   | RentalPropertiesDocument
   | SettingsDocument;
 
@@ -414,6 +476,65 @@ type HeroSliceVariation = HeroSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
+
+/**
+ * Primary content in *PropertyDetails → Default → Primary*
+ */
+export interface PropertyDetailsSliceDefaultPrimary {
+  /**
+   * Property Details field in *PropertyDetails → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_details.default.primary.property_details
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  property_details: ContentRelationshipFieldWithData<
+    [
+      {
+        id: "rental_properties";
+        fields: [
+          "property_image",
+          "title",
+          "description",
+          "lowest_price",
+          "highest_price",
+          "is_enabled",
+        ];
+      },
+    ]
+  >;
+}
+
+/**
+ * Default variation for PropertyDetails Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PropertyDetailsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PropertyDetailsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PropertyDetails*
+ */
+type PropertyDetailsSliceVariation = PropertyDetailsSliceDefault;
+
+/**
+ * PropertyDetails Shared Slice
+ *
+ * - **API ID**: `property_details`
+ * - **Description**: PropertyDetails
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PropertyDetailsSlice = prismic.SharedSlice<
+  "property_details",
+  PropertyDetailsSliceVariation
+>;
 
 /**
  * Item in *PropertyListings → Default → Primary → Rental Property Listings*
@@ -617,6 +738,9 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      RentalDocument,
+      RentalDocumentData,
+      RentalDocumentDataSlicesSlice,
       RentalPropertiesDocument,
       RentalPropertiesDocumentData,
       SettingsDocument,
@@ -627,6 +751,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      PropertyDetailsSlice,
+      PropertyDetailsSliceDefaultPrimary,
+      PropertyDetailsSliceVariation,
+      PropertyDetailsSliceDefault,
       PropertyListingsSlice,
       PropertyListingsSliceDefaultPrimaryRentalPropertyListingsItem,
       PropertyListingsSliceDefaultPrimary,
