@@ -14,80 +14,21 @@
 					}
 				]
 			},
-			"property_list_item": {
+			"rental_property_listings": {
 				"__TYPE__": "GroupContentType",
 				"value": [
 					{
 						"__TYPE__": "GroupItemContent",
 						"value": [
 							[
-								"title",
+								"rental_property",
 								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "heading3",
-											"content": {
-												"text": "Measure"
-											}
-										}
-									]
-								}
-							],
-							[
-								"description",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Anim ullamco id qui commodo ea."
-											}
-										}
-									]
-								}
-							],
-							[
-								"property_image",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
-										"width": 3168,
-										"height": 4752
-									},
-									"url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
-									"width": 3168,
-									"height": 4752,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"alt": "grown",
-									"credits": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"lowest_price",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "0",
-									"type": "Number"
-								}
-							],
-							[
-								"highest_price",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "42",
-									"type": "Number"
+									"__TYPE__": "LinkContent",
+									"key": "3db08d4f-8569-44eb-9413-64e7810cf246",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
 								}
 							]
 						]

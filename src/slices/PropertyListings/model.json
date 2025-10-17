@@ -21,50 +21,31 @@
             "multi": "heading2"
           }
         },
-        "property_list_item": {
+        "rental_property_listings": {
           "type": "Group",
           "config": {
-            "label": "Property List Item",
+            "label": "Rental Property Listings",
             "repeat": true,
             "fields": {
-              "title": {
-                "type": "StructuredText",
+              "rental_property": {
+                "type": "Link",
                 "config": {
-                  "label": "Title",
-                  "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "heading3"
-                }
-              },
-              "description": {
-                "type": "StructuredText",
-                "config": {
-                  "label": "Description",
-                  "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,strong,em"
-                }
-              },
-              "property_image": {
-                "type": "Image",
-                "config": {
-                  "label": "Property Image",
-                  "constraint": {},
-                  "thumbnails": []
-                }
-              },
-              "lowest_price": {
-                "type": "Number",
-                "config": {
-                  "label": "Lowest Price",
-                  "placeholder": ""
-                }
-              },
-              "highest_price": {
-                "type": "Number",
-                "config": {
-                  "label": "Highest Price",
-                  "placeholder": ""
+                  "label": "Rental Property",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "rental_properties",
+                      "fields": [
+                        "property_image",
+                        "title",
+                        "description",
+                        "lowest_price",
+                        "highest_price",
+                        "is_enabled"
+                      ]
+                    }
+                  ]
                 }
               }
             }
