@@ -4,7 +4,7 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { squarePeg } from "@/assets/font/font";
 import { container } from "@/constants/tailwind-constants";
-import Button from "@/components/Button";
+import VillaSearchForm from "@/components/VillaSearchForm";
 
 /**
  * Props for `Hero`.
@@ -44,40 +44,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </div>
       <div className="absolute inset-0 top-80 z-20 flex justify-center items-center px-4">
         <div className={`${container} w-full`}>
-          <form className="flex flex-col lg:flex-row items-stretch gap-3 bg-white/90 rounded-xl shadow-lg p-4 backdrop-blur-sm">
-            {/* Search Field */}
-            <input
-              type="text"
-              placeholder="Search for villas..."
-              className="flex-1 min-w-[180px] px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-800"
-            />
-
-            {/* Check-in Date */}
-            <input
-              type="datetime-local"
-              aria-label="Check-in date"
-              className="flex-1 min-w-[180px] px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-800"
-            />
-
-            {/* Check-out Date */}
-            <input
-              type="datetime-local"
-              aria-label="Check-out date"
-              className="flex-1 min-w-[180px] px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-800"
-            />
-
-            {/* Category Dropdown */}
-            <select className="flex-1 min-w-[180px] px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-              <option value="">All Categories</option>
-              <option value="spices">Premium</option>
-              <option value="millets">Deluxe</option>
-              <option value="vegetables">Suite</option>
-              <option value="nuts">Penthouse</option>
-            </select>
-
-            {/* Search Button */}
-            <Button type="submit">Search</Button>
-          </form>
+          <VillaSearchForm />
         </div>
       </div>
     </section>
