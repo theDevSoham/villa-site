@@ -1,0 +1,40 @@
+{
+  "id": "event_property_details",
+  "type": "SharedSlice",
+  "name": "EventPropertyDetails",
+  "description": "EventPropertyDetails",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "event_property": {
+          "type": "Link",
+          "config": {
+            "label": "Event Property",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "event_property",
+                "fields": [
+                  "property_image",
+                  "title",
+                  "description",
+                  "event",
+                  "event_description",
+                  "is_available"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

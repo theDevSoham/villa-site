@@ -1,0 +1,58 @@
+{
+  "id": "event_property_listings",
+  "type": "SharedSlice",
+  "name": "EventPropertyListings",
+  "description": "EventPropertyListings",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "event_properties": {
+          "type": "Group",
+          "config": {
+            "label": "Event Properties",
+            "repeat": true,
+            "fields": {
+              "event_property": {
+                "type": "Link",
+                "config": {
+                  "label": "Event Property",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "event_property",
+                      "fields": [
+                        "property_image",
+                        "title",
+                        "description",
+                        "event",
+                        "event_description",
+                        "is_available"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

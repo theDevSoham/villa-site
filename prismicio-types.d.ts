@@ -69,7 +69,161 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
+/**
+ * Content for Event Property documents
+ */
+interface EventPropertyDocumentData {
+  /**
+   * Property Image field in *Event Property*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property.property_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  property_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Event Property*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Description field in *Event Property*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Event field in *Event Property*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property.event
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  event: prismic.SelectField<"corporate" | "birthday" | "reception">;
+
+  /**
+   * Event Description field in *Event Property*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property.event_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  event_description: prismic.RichTextField;
+
+  /**
+   * Is Available field in *Event Property*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: event_property.is_available
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  is_available: prismic.BooleanField;
+}
+
+/**
+ * Event Property document from Prismic
+ *
+ * - **API ID**: `event_property`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EventPropertyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<EventPropertyDocumentData>,
+    "event_property",
+    Lang
+  >;
+
+type EventPropertyPageDocumentDataSlicesSlice = EventPropertyDetailsSlice;
+
+/**
+ * Content for Event Property Page documents
+ */
+interface EventPropertyPageDocumentData {
+  /**
+   * Slice Zone field in *Event Property Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<EventPropertyPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *Event Property Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: event_property_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Event Property Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: event_property_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Event Property Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Event Property Page document from Prismic
+ *
+ * - **API ID**: `event_property_page`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EventPropertyPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<EventPropertyPageDocumentData>,
+    "event_property_page",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
+  | EventPropertyListingsSlice
   | PropertyListingsSlice
   | TestimonialsSlice
   | HeroSlice;
@@ -410,10 +564,157 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | EventPropertyDocument
+  | EventPropertyPageDocument
   | HomepageDocument
   | RentalDocument
   | RentalPropertiesDocument
   | SettingsDocument;
+
+/**
+ * Primary content in *EventPropertyDetails → Default → Primary*
+ */
+export interface EventPropertyDetailsSliceDefaultPrimary {
+  /**
+   * Event Property field in *EventPropertyDetails → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property_details.default.primary.event_property
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  event_property: ContentRelationshipFieldWithData<
+    [
+      {
+        id: "event_property";
+        fields: [
+          "property_image",
+          "title",
+          "description",
+          "event",
+          "event_description",
+          "is_available",
+        ];
+      },
+    ]
+  >;
+}
+
+/**
+ * Default variation for EventPropertyDetails Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EventPropertyDetailsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<EventPropertyDetailsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *EventPropertyDetails*
+ */
+type EventPropertyDetailsSliceVariation = EventPropertyDetailsSliceDefault;
+
+/**
+ * EventPropertyDetails Shared Slice
+ *
+ * - **API ID**: `event_property_details`
+ * - **Description**: EventPropertyDetails
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EventPropertyDetailsSlice = prismic.SharedSlice<
+  "event_property_details",
+  EventPropertyDetailsSliceVariation
+>;
+
+/**
+ * Item in *EventPropertyListings → Default → Primary → Event Properties*
+ */
+export interface EventPropertyListingsSliceDefaultPrimaryEventPropertiesItem {
+  /**
+   * Event Property field in *EventPropertyListings → Default → Primary → Event Properties*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property_listings.default.primary.event_properties[].event_property
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  event_property: ContentRelationshipFieldWithData<
+    [
+      {
+        id: "event_property";
+        fields: [
+          "property_image",
+          "title",
+          "description",
+          "event",
+          "event_description",
+          "is_available",
+        ];
+      },
+    ]
+  >;
+}
+
+/**
+ * Primary content in *EventPropertyListings → Default → Primary*
+ */
+export interface EventPropertyListingsSliceDefaultPrimary {
+  /**
+   * Heading field in *EventPropertyListings → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property_listings.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Event Properties field in *EventPropertyListings → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: event_property_listings.default.primary.event_properties[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  event_properties: prismic.GroupField<
+    Simplify<EventPropertyListingsSliceDefaultPrimaryEventPropertiesItem>
+  >;
+}
+
+/**
+ * Default variation for EventPropertyListings Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EventPropertyListingsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<EventPropertyListingsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *EventPropertyListings*
+ */
+type EventPropertyListingsSliceVariation = EventPropertyListingsSliceDefault;
+
+/**
+ * EventPropertyListings Shared Slice
+ *
+ * - **API ID**: `event_property_listings`
+ * - **Description**: EventPropertyListings
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EventPropertyListingsSlice = prismic.SharedSlice<
+  "event_property_listings",
+  EventPropertyListingsSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -735,6 +1036,11 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      EventPropertyDocument,
+      EventPropertyDocumentData,
+      EventPropertyPageDocument,
+      EventPropertyPageDocumentData,
+      EventPropertyPageDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
@@ -747,6 +1053,15 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavLinksItem,
       AllDocumentTypes,
+      EventPropertyDetailsSlice,
+      EventPropertyDetailsSliceDefaultPrimary,
+      EventPropertyDetailsSliceVariation,
+      EventPropertyDetailsSliceDefault,
+      EventPropertyListingsSlice,
+      EventPropertyListingsSliceDefaultPrimaryEventPropertiesItem,
+      EventPropertyListingsSliceDefaultPrimary,
+      EventPropertyListingsSliceVariation,
+      EventPropertyListingsSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  event_property_details: dynamic(() => import("./EventPropertyDetails")),
+  event_property_listings: dynamic(() => import("./EventPropertyListings")),
   hero: dynamic(() => import("./Hero")),
   property_details: dynamic(() => import("./PropertyDetails")),
   property_listings: dynamic(() => import("./PropertyListings")),
