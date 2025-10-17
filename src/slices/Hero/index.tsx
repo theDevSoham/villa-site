@@ -19,9 +19,9 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative"
+      className="relative h-[90vh] w-full overflow-hidden"
     >
-      <div className="w-full h-[90vh] absolute inset-0 z-0">
+      <div className="w-full h-full absolute inset-0 z-0">
         <PrismicNextImage
           field={slice.primary.hero_image}
           className="w-full h-full object-cover"
@@ -42,7 +42,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           }}
         />
       </div>
-      <div className="absolute inset-0 top-80 z-20 flex justify-center items-center px-4">
+      <div className="absolute inset-0 z-20 flex justify-center items-center px-4">
         <div className={`${container} w-full`}>
           <VillaSearchForm />
         </div>
