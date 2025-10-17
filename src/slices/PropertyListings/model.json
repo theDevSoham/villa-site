@@ -1,0 +1,77 @@
+{
+  "id": "property_listings",
+  "type": "SharedSlice",
+  "name": "PropertyListings",
+  "description": "PropertyListings",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "property_list_item": {
+          "type": "Group",
+          "config": {
+            "label": "Property List Item",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading3"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,strong,em"
+                }
+              },
+              "property_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Property Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "lowest_price": {
+                "type": "Number",
+                "config": {
+                  "label": "Lowest Price",
+                  "placeholder": ""
+                }
+              },
+              "highest_price": {
+                "type": "Number",
+                "config": {
+                  "label": "Highest Price",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

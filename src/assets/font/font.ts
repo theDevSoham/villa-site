@@ -1,4 +1,4 @@
-import { Square_Peg, KoHo, Bubbler_One } from "next/font/google";
+import { Square_Peg, KoHo, Bubbler_One, Andika } from "next/font/google";
 
 export const squarePeg = Square_Peg({
   variable: "--font-square-peg",
@@ -17,4 +17,10 @@ export const bubblerOne = Bubbler_One({
   variable: "--font-barlow",
   subsets: ["latin"],
   weight: ["400"],
+});
+
+export const andika = Andika({
+  variable: "--font-barlow",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });

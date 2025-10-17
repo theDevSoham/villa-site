@@ -69,7 +69,10 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomepageDocumentDataSlicesSlice = TestimonialsSlice | HeroSlice;
+type HomepageDocumentDataSlicesSlice =
+  | PropertyListingsSlice
+  | TestimonialsSlice
+  | HeroSlice;
 
 /**
  * Content for HomePage documents
@@ -257,7 +260,154 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument | SettingsDocument;
+/**
+ * Item in *Villa Details → Properties*
+ */
+export interface VillaDetailsDocumentDataPropertiesItem {
+  /**
+   * Property Image field in *Villa Details → Properties*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: villa_details.properties[].property_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  property_image: prismic.ImageField<never>;
+
+  /**
+   * Property Name field in *Villa Details → Properties*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: villa_details.properties[].property_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  property_name: prismic.RichTextField;
+
+  /**
+   * Property Description field in *Villa Details → Properties*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: villa_details.properties[].property_description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  property_description: prismic.KeyTextField;
+
+  /**
+   * Highest Price field in *Villa Details → Properties*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: villa_details.properties[].highest_price
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  highest_price: prismic.NumberField;
+
+  /**
+   * Lowest Price field in *Villa Details → Properties*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: villa_details.properties[].lowest_price
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  lowest_price: prismic.NumberField;
+
+  /**
+   * Is Available field in *Villa Details → Properties*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: villa_details.properties[].is_available
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  is_available: prismic.BooleanField;
+}
+
+type VillaDetailsDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Villa Details documents
+ */
+interface VillaDetailsDocumentData {
+  /**
+   * Properties field in *Villa Details*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: villa_details.properties[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  properties: prismic.GroupField<
+    Simplify<VillaDetailsDocumentDataPropertiesItem>
+  >;
+
+  /**
+   * Slice Zone field in *Villa Details*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: villa_details.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<VillaDetailsDocumentDataSlicesSlice> /**
+   * Meta Title field in *Villa Details*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: villa_details.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Villa Details*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: villa_details.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Villa Details*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: villa_details.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Villa Details document from Prismic
+ *
+ * - **API ID**: `villa_details`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type VillaDetailsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<VillaDetailsDocumentData>,
+    "villa_details",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | HomepageDocument
+  | SettingsDocument
+  | VillaDetailsDocument;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -320,6 +470,118 @@ type HeroSliceVariation = HeroSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
+
+/**
+ * Item in *PropertyListings → Default → Primary → Property List Item*
+ */
+export interface PropertyListingsSliceDefaultPrimaryPropertyListItemItem {
+  /**
+   * Title field in *PropertyListings → Default → Primary → Property List Item*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_listings.default.primary.property_list_item[].title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Description field in *PropertyListings → Default → Primary → Property List Item*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_listings.default.primary.property_list_item[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Property Image field in *PropertyListings → Default → Primary → Property List Item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_listings.default.primary.property_list_item[].property_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  property_image: prismic.ImageField<never>;
+
+  /**
+   * Lowest Price field in *PropertyListings → Default → Primary → Property List Item*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_listings.default.primary.property_list_item[].lowest_price
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  lowest_price: prismic.NumberField;
+
+  /**
+   * Highest Price field in *PropertyListings → Default → Primary → Property List Item*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_listings.default.primary.property_list_item[].highest_price
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  highest_price: prismic.NumberField;
+}
+
+/**
+ * Primary content in *PropertyListings → Default → Primary*
+ */
+export interface PropertyListingsSliceDefaultPrimary {
+  /**
+   * Heading field in *PropertyListings → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_listings.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Property List Item field in *PropertyListings → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: property_listings.default.primary.property_list_item[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  property_list_item: prismic.GroupField<
+    Simplify<PropertyListingsSliceDefaultPrimaryPropertyListItemItem>
+  >;
+}
+
+/**
+ * Default variation for PropertyListings Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PropertyListingsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PropertyListingsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PropertyListings*
+ */
+type PropertyListingsSliceVariation = PropertyListingsSliceDefault;
+
+/**
+ * PropertyListings Shared Slice
+ *
+ * - **API ID**: `property_listings`
+ * - **Description**: PropertyListings
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PropertyListingsSlice = prismic.SharedSlice<
+  "property_listings",
+  PropertyListingsSliceVariation
+>;
 
 /**
  * Item in *Testimonials → Default → Primary → Testimonial*
@@ -440,11 +702,20 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavLinksItem,
+      VillaDetailsDocument,
+      VillaDetailsDocumentData,
+      VillaDetailsDocumentDataPropertiesItem,
+      VillaDetailsDocumentDataSlicesSlice,
       AllDocumentTypes,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      PropertyListingsSlice,
+      PropertyListingsSliceDefaultPrimaryPropertyListItemItem,
+      PropertyListingsSliceDefaultPrimary,
+      PropertyListingsSliceVariation,
+      PropertyListingsSliceDefault,
       TestimonialsSlice,
       TestimonialsSliceDefaultPrimaryTestimonialItem,
       TestimonialsSliceDefaultPrimary,
